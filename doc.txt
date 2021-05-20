@@ -1,0 +1,40 @@
+?**********putty********/
+
+https://www.routerhosting.com/knowledge-base/how-to-install-cpanel-whm-on-centos-8-step-by-step-visual-guide/
+
+
+IP : 164.52.208.152:2087
+Username : root
+Password : X6th@5w4w
+
+
+/******Cpanel***********/
+
+doamin :  http://apptrack.rathinfotech.com/cpanel
+
+Username : chandan
+Password : X6th@5w4w
+
+DB username : chandan_rank
+
+passwd : d5@$wdLFq)Cq
+
+SELECT kk.domain ,count(*) as cnt
+FROM `tbl_keywords` k
+join tbl_keyword_details kk on(kk.post_key=k.keywords) 
+where k.flag=1 
+and k.domain='malrox.com' 
+and kk.position<=10 GROUP BY kk.`domain` 
+order by cnt desc
+
+
+
+SELECT kk.post_key,kk.position,k.taskid,kk.taskid
+FROM `tbl_keyword_details` kk 
+join tbl_keywords k on(k.keywords=kk.post_key) 
+where k.focuskey=1 and k.flag=1 
+and k.domain='malrox.com' 
+and kk.post_key='Mall Movable Partition Supplier Telangana'
+and FIND_IN_SET('malrox.com', k.domain) <> 0 
+
+order by kk.position desc

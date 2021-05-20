@@ -1,0 +1,85 @@
+http://phpstack-581343-1881818.cloudwaysapps.com/keywordscron.php
+
+http://phpstack-581343-1881818.cloudwaysapps.com/status2-file-update.php
+
+
+http://phpstack-581343-1881818.cloudwaysapps.com/report.php
+
+SELECT kk.domain ,count(*) as cnt 
+FROM `tbl_keyword_details` kk
+join tbl_keywords k on(k.taskid=kk.taskid)
+where kk.position<=10  GROUP BY `domain` order by cnt DESC
+
+select distinct(taskid) from tbl_keyword_details
+
+SELECT keyid,taskid,status FROM tbl_keywords 
+WHERE status=3 and taskid NOT IN(
+SELECT taskid  FROM tbl_keyword_details ) ;
+
+* * * * * /usr/local/bin/php http://164.52.209.32/~rathtest/index.php
+
+SELECT c.keyid,c.taskid, 
+(SELECT count(id) FROM `tbl_keyword_details` cw WHERE status=1 and c.taskid=cw.taskid) as countID 
+FROM `tbl_keywords` c WHERE c.status=3
+
+INSERT INTO tbl_keyword_details (taskid,post_key,title,position,domain,url,status)
+SELECT taskid,post_key,title,position,domain,url,status
+FROM tbl_keyword_details
+WHERE STATUS=3;
+
+
+SELECT 
+    	taskid,COUNT(taskid),
+        post_key,COUNT(post_key),
+        title,COUNT(title),
+        position,COUNT(position),
+        domain,COUNT(domain)
+    
+FROM
+    tbl_keyword_details
+GROUP BY taskid,post_key,title,position,domain
+HAVING COUNT(taskid) > 1
+AND COUNT(post_key) > 1
+AND COUNT(title) > 1
+AND COUNT(position) > 1 AND COUNT(domain) > 1;
+
+
+
+DELETE c1 FROM tbl_keyword_details c1
+INNER JOIN tbl_keyword_details c2 
+WHERE
+    c1.id > c2.id AND 
+    c1.taskid = c2.taskid
+    and c1.post_key = c2.post_key
+    and c1.title = c2.title
+    and c1.position = c2.position
+    and c1.domain = c2.domain;
+
+
+delete t1 FROM tbl_keyword_details t1
+INNER  JOIN tbl_keyword_details t2
+WHERE 
+    t1.id < t2.id AND
+    t1.taskid = t2.taskid AND
+    t1.post_key = t2.post_key AND
+    t1.position = t2.position AND
+   t1.domain = t2.domain AND t1.taskid='04191721-2735-0066-0000-cd5aa622b08a' ;
+
+SELECT distinct(taskid) FROM tbl_keyword_details 
+WHERE taskid NOT IN(
+SELECT taskid  FROM tbl_keywords where status=3);
+
+
+
+select domain from tbl_keyword_details where taskid='04191449-2735-0066-0000-4cd33d115a11' 
+
+
+
+SELECT k.keywords,k.taskid,k.focuscmp,kk.taskid,kk.post_key,kk.domain
+FROM tbl_keywords k
+join tbl_keyword_details kk on(kk.taskid=k.taskid)
+WHERE FIND_IN_SET('apnsteel.com', k.focuscmp) <> 0
+
+
+
+SELECT count(*) as cnt FROM `tbl_keyword_details` kk join tbl_keywords k on(k.keywords=kk.post_key) where kk.position<=10 and k.focuskey=2 and kk.domain='virginengineers.com' and FIND_IN_SET('virginengineers.com', k.focuscmp) <> 0 GROUP BY kk.domain
