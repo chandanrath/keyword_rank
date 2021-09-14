@@ -1,6 +1,7 @@
 <?php
 
-$start_time = microtime(true); 
+
+ $start_time = microtime(true); //exit;
 
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL); 
 
@@ -48,9 +49,10 @@ if($server==1)
     $Arrkeywords = array();
 	
     
-    $keySql ="SELECT keyid,keywords FROM tbl_keywords WHERE status=0 order by keyid ASC limit 0,10";
+   $keySql ="SELECT keyid,keywords FROM tbl_keywords WHERE status=0 order by keyid ASC limit 0,200";
     $resData = mysqli_query($conn,$keySql);
     $numRows = mysqli_num_rows($resData);	
+    
     
     if($numRows > 0)
 	{
@@ -74,7 +76,7 @@ if($server==1)
        exit;
     }
     
-    //echo"<pre>Arrkeywords==";print_r($Arrkeywords); //exit;
+   // echo"<pre>Arrkeywords==";print_r($Arrkeywords); exit;
    
     foreach($Arrkeywords as $keyid=> $keyVal)
     {
@@ -93,7 +95,8 @@ if($server==1)
             "priority"          => 1,
             "tag"               => "keyword_rank_".$my_unq_id,
             "postback_data"     => "advanced",
-        	"postback_url"      => 'http://164.52.209.32/~rathtest/v3/postback_url.php?id=$id&tag=$tag'
+      
+        	"postback_url"      => 'http://apptrack.rathinfotech.com/postback_url.php?id=$id&tag=$tag'
         );
         
         
@@ -118,7 +121,7 @@ if($server==1)
         		{
         		    // status=1 means request for  data //
         		
-        		    $update2 = "update tbl_keywords set status=1,taskid='".$taskid."' where keyid='".$keyid."'";	// user data for post api //
+        		    $update2 = "update tbl_keywords set status=2,taskid='".$taskid."' where keyid='".$keyid."'";	// user data for post api //
         			mysqli_query($conn, $update2);
         		}
         		

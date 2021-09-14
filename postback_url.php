@@ -1,5 +1,7 @@
 <?php
 
+
+
 $gstart_time = microtime(true); 
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL); 
 
@@ -33,8 +35,10 @@ if (!empty($post_data_in)) {
 		
 		//do something with results
 		
+		// status=2 means got reaponse of data and inserted into data/.txt  //
+		
 		$update2 = "update tbl_keywords set status=2 where taskid='".$taskid."'";	// user data for post api //
-        	mysqli_query($conn, $update2);
+        mysqli_query($conn, $update2);
 		
 		
 		echo "ok";
@@ -45,6 +49,7 @@ if (!empty($post_data_in)) {
 		
 		echo "error";
 	}
+	
 } else {
 	echo "empty POST";
 }
